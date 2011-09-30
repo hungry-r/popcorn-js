@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Popcorn Slide Plug-in Demo</title>
+
+  <script src="../../popcorn.js"></script>
+  <script src="popcorn.slide.js"></script>
+  <script type="text/javascript" src="http://public.slidesharecdn.com/javascripts/swfobject_playerapi.js"></script>
+  <script src="swfobject.js"></script>    
+  
+
+					<script type="text/javascript">
+					document.addEventListener( "DOMContentLoaded", function() {
+							var p = Popcorn( "#video" )
+							.volume(0.02)  
+							.slide({
+								type: "jump",
+								target: "player",
+								slide: 8,
+								start: 6
+							})
+							.play()
+					}, false);
+					
+                        var flashMovie;
+
+                        //Load the flash player. Properties for the player can be changed here.
+                        
+						//allowScriptAccess from other domains
+						var params = { allowScriptAccess: "always" };
+						var atts = { id: "player" };
+
+						//doc: The path of the file to be used
+						//startSlide: The number of the slide to start from
+						//rel: Whether to show a screen with related slideshows at the end or not. 0 means false and 1 is true..
+						var flashvars = { doc : "thirst-upload-800x600-1215534320518707-8", startSlide : 1, rel : 0 };
+
+						//Generate the embed SWF file
+						swfobject.embedSWF("http://static.slidesharecdn.com/swf/ssplayer2.swf", "player", "598", "480", "8", null, flashvars, params, atts);
+
+						//Get a reference to the player
+						flashMovie = document.getElementById("player");
+						
+
+                        //Jump to the appropriate slide
+                        function jumpTo(){
+                                flashMovie.jumpTo(parseInt(document.getElementById("slidenumber").value));
+                        }
+						function jumpTo2(){
+                                flashMovie.jumpTo(10);
+                        }
+                        //Update the slide number in the field for the same
+                        function updateSlideNumber(){
+                                document.getElementById("slidenumber").value = flashMovie.getCurrentSlide();
+                        }
+                </script>
+				<!--
+				dsfsdYTW%$RHDFGJYTIUJYGJG
+  <script type="text/javascript">
+    document.addEventListener( "DOMContentLoaded", function() {
+      var p = Popcorn( "#video" )
+      .volume(0.02)
+      
+	  
+      .slide({
+        type: "jump",
+		target: "player",
+        slide: 8,
+		start: 6
+      })
+	  .play()
+    }, false);
+    var params = { allowScriptAccess: "always" };
+    var atts = { id: "player" };
+    var flashvars = { doc : "thirst-upload-800x600-1215534320518707-8" };
+    swfobject.embedSWF("http://static.slidesharecdn.com/swf/ssplayer2.swf","player","598","480","8",null,flashvars,params, atts);
+	var flashMovie;
+	flashMovie = document.getElementById("player");
+	function jumpTo(){
+	  flashMovie.jumpTo(parseInt(document.getElementById("slidenumber").value));
+    }
+  </script>-->
+</head>
+<body>
+  <h1 id="qunit-header">Popcorn Slide Plug-in Demo</h1>
+  <p> description 1</p>
+  <p> description 2</p>
+  <div>
+    <video id="video"
+      controls preload="none"
+      width="250px"
+      poster="../../test/poster.png">
+
+      <source id="mp4"
+        src="../../test/trailer.mp4"
+        type='video/mp4; codecs="avc1, mp4a"'>
+
+      <source id="ogv"
+        src="../../test/trailer.ogv"
+        type='video/ogg; codecs="theora, vorbis"'>
+
+      <p>Your user agent does not support the HTML5 Video element.</p>
+
+    </video>
+  </div>
+
+  <!--
+  <div style="width:425px" id="__ss_4218716"> <strong style="display:block;margin:12px 0 4px">
+	<a href="http://www.slideshare.net/silviavuong/popcorn" title="Popcorn" target="_blank">Popcorn</a></strong> 
+	
+		<iframe src="http://www.slideshare.net/slideshow/embed_code/4218716" width="425" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+	
+	<	div style="padding:5px 0 12px"> View more <a href="http://www.slideshare.net/" target="_blank">presentations</a> from 
+		<a href="http://www.slideshare.net/silviavuong" target="_blank">silviavuong</a> </div> 
+		</div>
+		-->
+  <div id="player">
+    You need Flash player 8+ and JavaScript to view the slideshow player.
+  </div>
+    <div style="margin-left: 150px; margin-top: 10px;">
+                       <button onclick="flashMovie.first();updateSlideNumber();" type="button" value="First">First</button>
+                       <button onclick="flashMovie.previous();updateSlideNumber();" type="button" value="Previous">Previous</button>
+                       <button onclick="jumpTo();updateSlideNumber();" type="button" value="Go to">Go to</button>
+                       <input type="text" id="slidenumber" size="2" value="1" onkeydown="if (event.keyCode == 13) { jumpTo(); }"/>
+                       <button onclick="flashMovie.next();updateSlideNumber();" type="button" value="Next">Next</button>
+                       <button onclick="flashMovie.last();updateSlideNumber();" type="button" value="Last">Last</button>
+               </div>
+</body>
+</html>

@@ -1,0 +1,105 @@
+// PLUGIN: SLIDE
+
+(function ( Popcorn ) {
+
+  /**
+   * Slide popcorn plug-in
+   * Options parameter will need a type, target, slide and change.
+   * Type is the kind of slide manipulation
+   * Start is the time you want to manipulation to take place
+   * Slide is the slide number to change to
+   * Target is the id of the document element that the slideshow is on
+   *
+   * @param {Object} options
+   *
+   * Example:
+     var p = Popcorn('#video')
+	  .slide( {
+        type: "jump",
+		target: "player",
+        slide: 5,
+		start: 6
+        } )
+   *
+   */
+  Popcorn.plugin( "slide" , {
+    manifest: {
+      about: {
+        name: "Popcorn Slide Plugin",
+        version: "0.1",
+        author: "hungry-r",
+        website: "hungryr.wordpress.com"
+      },
+      options: {
+        type: {
+          elem: "input",
+          type: "text",
+          label: "Type"
+        },
+        target: "iframe-container",
+        slide: {
+          elem: "input",
+          type: "text",
+          label: "Slide"
+        },
+        start: {
+          elem: "input",
+          type: "text",
+          label: "Start"
+        }
+      }
+    },
+    _setup: function( options ) {
+
+      var target = document.getElementById( options.target );
+
+      // make an iframe
+      //options._iframe = document.createElement( "iframe" );
+      //options._iframe.setAttribute( "width", "100%" );
+      //options._iframe.setAttribute( "height", "100%" );
+      //options._iframe.id = options.id;
+      //options._iframe.src = options.src;
+      //options._iframe.style.display = "none";
+
+      if ( !target && Popcorn.plugin.debug ) {
+        throw new Error( "target container doesn't exist" );
+      }
+
+      // add the hidden iframe to the DOM
+      //target && target.appendChild( options._iframe );
+
+    },
+    /**
+     * @member webpage
+     * The start function will be executed when the currentTime
+     * of the video  reaches the start time provided by the
+     * options variable
+     */
+    start: function( event, options ){
+      // make the iframe visible
+	  
+	  var flashMovie2;
+	  flashMovie = document.getElementById("player");
+	  flashMovie.jumpTo(parseInt(document.getElementById("slidenumber").value));
+	  //target.jumpTo(3);   // <----------------------------------------------------------------- what i had before
+      
+	  
+	  //options._iframe.src = options.src;
+      //options._iframe.style.display = "inline";
+    },
+    /**
+     * @member webpage
+     * The end function will be executed when the currentTime
+     * of the video  reaches the end time provided by the
+     * options variable
+     */
+    //end: function( event, options ){
+      // make the iframe invisible
+    //  options._iframe.style.display = "none";
+    //},
+    _teardown: function( options ) {
+
+      document.getElementById( options.target ) && document.getElementById( options.target ).removeChild( options._iframe );
+    }
+  });
+})( Popcorn );
