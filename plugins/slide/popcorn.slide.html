@@ -7,74 +7,66 @@
   <script src="popcorn.slide.js"></script>
   <script type="text/javascript">
     document.addEventListener( "DOMContentLoaded", function() {
+	
 	  var p = Popcorn( "#video" )
 	    .volume(0.02)  
 	    .slide({
-		  type: "jump",
 		  target: "player",
-		  slide: 18,
-		  start: 5
+		  slide: 7,
+		  //seconds
+		  start: 5,
+		  //seconds
+		  end:8,
+		  doc:"popcorn-091127152424-phpapp02"
 	    })
 	    .slide({
-		  type: "jump",
-		  target: "player",
-		  slide: 23,
-		  start: 10
+          target: "player",
+		  slide: 11,
+		  //seconds
+		  start: 12,
+		  //seconds
+		  end:14,
+		  doc:"popcorn-091127152424-phpapp02"
 	    })
 	    .slide({
-		  type: "jump",
 		  target: "player",
-		  slide: 17,
-		  start: 15
+		  slide: 6,
+		  //seconds
+		  start: 17,
+		  //seconds
+		  end:20,
+		  doc:"popcorn-091127152424-phpapp02"
 	    })
 	    .play()
 	}, false);				
-    var flashMovie;
-	//Load the flash player. Properties for the player can be changed here.
-	function loadPlayer() {
-	  //allowScriptAccess from other domains
-	  var params = { 
-	    allowScriptAccess: "always" 
-	  };
-	  var atts = { 
-	    id: "player" 
-	  };
-      //doc: The path of the file to be used
-	  //startSlide: The number of the slide to start from
-	  //rel: Whether to show a screen with related slideshows at the end or not. 0 means false and 1 is true..
-	  var flashvars = { 
-	    doc : "thirst-upload-800x600-1215534320518707-8", 
-		startSlide : 1, 
-		rel : 0 
-	  };
-	  //Generate the embed SWF file
-	  swfobject.embedSWF("http://static.slidesharecdn.com/swf/ssplayer2.swf", "player", "598", "480", "8", null, flashvars, params, atts);
-	  //Get a reference to the player
-	  flashMovie = document.getElementById("player");
-	}
+    
   </script>
 </head>
-<body bgcolor="#ffffff" onload="loadPlayer();">
+<body bgcolor="#ffffff" >
   <h1 id="qunit-header">Popcorn Slide Plug-in Demo</h1>
-    <p> Slide show will jump to slide #18 at 5th second</p>
-    <p> Slide show will jump to slide #23 at 10th second</p>
-	<p> Slide show will jump to slide #17 at 15th second</p>
+    <p> Slide #7 will show at 5th second and close at 8th second</p>
+    <p> Slide #11 will show at 12th second and close at 14th second</p>
+	<p> Slide #6 will show at 17th second and close at 20th second</p>
   <div>
     <video id="video"
 	  controls preload="none"
 	  width="250px"
 	  poster="../../test/poster.png">
+	  
 	  <source id="mp4"
 		src="../../test/trailer.mp4"
 		type='video/mp4; codecs="avc1, mp4a"'>
+		
 	  <source id="ogv"
 		src="../../test/trailer.ogv"
 		type='video/ogg; codecs="theora, vorbis"'>
+		
 	  <p>Your user agent does not support the HTML5 Video element.</p>
+	  
 	</video>
   </div>
   <div id="player">
-    You need Flash player 8+ and JavaScript enabled to view this video.
   </div>	
+  
 </body>
 </html>
