@@ -15,12 +15,12 @@
    *
    * Example:
      var p = Popcorn('#video')
-	  .slide( {
-		target: "player",
-        slide: 5,
-		start: 6, // seconds
-		end: 6, // seconds
-		doc:"popcorn-091127152424-phpapp02" // docname from slideshare
+    .slide( {
+    target: "player",
+    slide: 5,
+    start: 6, // seconds
+    end: 6, // seconds
+    doc:"popcorn-091127152424-phpapp02" // docname from slideshare
         } )
    *
    */
@@ -33,7 +33,7 @@
           website: "hungryr.wordpress.com"
         },
         options: {
-		  target: "iframe-container",	  
+        target: "iframe-container",
           slide: {
             elem: "input",
             type: "text",
@@ -44,12 +44,12 @@
             type: "text",
             label: "Start"
           },
-		  end: {
+      end: {
             elem: "input",
             type: "text",
             label: "End"
-          },	
-		  doc: {
+          },
+      doc: {
             elem: "input",
             type: "text",
             label: "Doc"
@@ -57,7 +57,7 @@
         }
       },
       _setup: function( options ) {
-		;
+    ;
       },
     /**
      * @member slide
@@ -65,51 +65,51 @@
      * of the video  reaches the start time provided by the
      * options variable
      */
-	  start: function( event, options ){
-		var newdiv = document.createElement('div');
-		var idname = options.target + options.start + options.end + options.doc
-		newdiv.setAttribute('id', idname);
-		document.getElementById( options.target ).appendChild(newdiv);
-		target = document.getElementById( idname ),
-	    Popcorn.getScript( "http://public.slidesharecdn.com/javascripts/swfobject_playerapi.js" );
-		
-		if ( !target && Popcorn.plugin.debug ) {
+    start: function( event, options ){
+    var newdiv = document.createElement('div');
+    var idname = options.target + options.start + options.end + options.doc
+    newdiv.setAttribute('id', idname);
+    document.getElementById( options.target ).appendChild(newdiv);
+    target = document.getElementById( idname ),
+    Popcorn.getScript( "http://public.slidesharecdn.com/javascripts/swfobject_playerapi.js" );
+
+    if ( !target && Popcorn.plugin.debug ) {
           throw new Error( "target container doesn't exist" );
-		}
-  
-		var flashMovie;
-		//allowScriptAccess from other domains
-		var params = { 
-	      allowScriptAccess: "always" 
-		};
-		var atts = { 
-	      id: idname
-		};
-		//doc: The path of the file to be used
-		//startSlide: The number of the slide to start from
-		//rel: Whether to show a screen with related slideshows at the end or not. 0 means false and 1 is true..
-		var flashvars = { 
-	      doc : options.doc, 
-		  startSlide : parseInt(options.slide), 
-		  rel : 0 
-		};
-		//Generate the embed SWF file
-		swfobject.embedSWF("http://static.slidesharecdn.com/swf/ssplayer2.swf", idname, "598", "480", "8", null, flashvars, params, atts);
-		//Get a reference to the player
-		flashMovie = document.getElementById(idname);
+    }
+
+    var flashMovie;
+    //allowScriptAccess from other domains
+    var params = {
+      allowScriptAccess: "always"
+    };
+    var atts = {
+      id: idname
+    };
+    //doc: The path of the file to be used
+    //startSlide: The number of the slide to start from
+    //rel: Whether to show a screen with related slideshows at the end or not. 0 means false and 1 is true..
+    var flashvars = {
+      doc : options.doc,
+      startSlide : parseInt(options.slide),
+      rel : 0
+    };
+    //Generate the embed SWF file
+    swfobject.embedSWF("http://static.slidesharecdn.com/swf/ssplayer2.swf", idname, "598", "480", "8", null, flashvars, params, atts);
+    //Get a reference to the player
+    flashMovie = document.getElementById(idname);
       },
-	  /**
+    /**
        * @member slide
        * The end function will be executed when the currentTime
        * of the video  reaches the end time provided by the
        * options variable
        */
-	  end: function( event, options ) {
-		var idname = options.target + options.start + options.end + options.doc
-		swfobject.removeSWF(idname)
+    end: function( event, options ) {
+    var idname = options.target + options.start + options.end + options.doc
+    swfobject.removeSWF(idname)
       },
       _teardown: function( options ) {
-	    ;
+      ;
       }
   });
 })( Popcorn );
