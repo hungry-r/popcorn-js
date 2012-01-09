@@ -1,4 +1,5 @@
 // PLUGIN: SLIDE
+// By Hyungryul Chun:
 
 (function ( Popcorn ) {
 
